@@ -1,0 +1,36 @@
+@import './tokens.css';
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html { font-size: 16px; -webkit-font-smoothing: antialiased; min-height: 100% }
+body { font-family: var(--font-body); color: var(--color-ink); background: var(--color-surface-1); min-height: 100% }
+#root { min-height: 100% }
+button{font-family:var(--font-body);cursor:pointer;border:none;background:none}
+input,textarea{font-family:var(--font-body);font-size:var(--text-sm)}
+img{max-width:100%;display:block}
+a{color:var(--color-blue-600);text-decoration:none}
+
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--color-surface-3);border-radius:999px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:var(--weight-medium);line-height:1;transition:all var(--dur-fast) var(--ease-out);white-space:nowrap;cursor:pointer}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--color-blue-600);color:#fff;box-shadow:var(--shadow-blue)}
+.btn-primary:hover{background:var(--color-blue-700)}
+.btn-ghost{background:transparent;color:var(--color-ink-muted);padding:var(--space-2) var(--space-3)}
+.btn-ghost:hover{background:var(--color-surface-2);color:var(--color-ink)}
+.btn-sm{padding:var(--space-1) var(--space-3);font-size:var(--text-xs);border-radius:var(--radius-sm)}
+.btn-icon{width:30px;height:30px;padding:0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:var(--radius-full);font-size:11px;font-weight:var(--weight-medium)}
+.badge-blue{background:var(--color-blue-50);color:var(--color-blue-700)}
+.badge-green{background:var(--color-success-bg);color:var(--color-success)}
+.badge-amber{background:var(--color-warning-bg);color:var(--color-sand-700)}
+.badge-purple{background:var(--color-purple-bg);color:var(--color-purple)}
+.badge-surface{background:var(--color-surface-2);color:var(--color-ink-muted)}
+
+/* Animate in */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp var(--dur-base) var(--ease-out) both}

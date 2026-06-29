@@ -1,0 +1,802 @@
+/* ─── Design tokens ─────────────────────────────────────── */
+:root {
+  --blue-900: #042C53;
+  --blue-800: #0C447C;
+  --blue-700: #185FA5;
+  --blue-500: #2979CC;
+  --blue-400: #378ADD;
+  --blue-200: #85B7EB;
+  --blue-100: #B5D4F4;
+  --blue-50:  #E6F1FB;
+  --blue-10:  #F4F9FF;
+
+  --gray-900: #0D1C2E;
+  --gray-600: #4A6785;
+  --gray-400: #94A3B8;
+  --gray-200: #E1EAF4;
+  --gray-100: #EFF4FA;
+  --gray-50:  #F8FAFC;
+
+  --white: #ffffff;
+  --green-bg: #ECFDF5;
+  --green-text: #15803D;
+  --green-border: #A7F3D0;
+  --red-bg: #FEF2F2;
+  --red-text: #DC2626;
+  --red-border: #FECACA;
+}
+
+/* ─── Period selector ────────────────────────────────────── */
+.rep-periods {
+  display: flex;
+  background: var(--blue-50);
+  border: 0.5px solid var(--blue-200);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.rep-period-btn {
+  padding: 5px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: var(--blue-700);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.rep-period-btn--active {
+  background: var(--blue-700);
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ─── Metric cards ───────────────────────────────────────── */
+.rep-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.rep-metric-card {
+  background: var(--white);
+  border: 0.5px solid var(--blue-200);
+  border-radius: 14px;
+  padding: 20px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.rep-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--m-color);
+  border-radius: 14px 14px 0 0;
+}
+
+.rep-metric-card:hover {
+  box-shadow: 0 4px 20px rgba(24, 95, 165, 0.1);
+  transform: translateY(-2px);
+}
+
+.rep-metric-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.rep-metric-card__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--blue-10);
+  border: 0.5px solid var(--blue-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.rep-change {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.rep-change--up {
+  background: var(--green-bg);
+  color: var(--green-text);
+  border: 0.5px solid var(--green-border);
+}
+
+.rep-change--down {
+  background: var(--red-bg);
+  color: var(--red-text);
+  border: 0.5px solid var(--red-border);
+}
+
+.rep-metric-card__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue-900);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.rep-metric-card__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-600);
+  margin-bottom: 4px;
+}
+
+.rep-metric-card__period {
+  font-size: 10px;
+  color: var(--gray-400);
+}
+
+/* ─── Cards ──────────────────────────────────────────────── */
+.rep-card {
+  background: var(--white);
+  border: 0.5px solid var(--blue-200);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.rep-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.rep-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue-900);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.rep-card__sub {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+/* ─── Chart legend ───────────────────────────────────────── */
+.rep-chart-legend {
+  display: flex;
+  gap: 14px;
+}
+
+.rep-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.rep-legend-item span {
+  width: 24px;
+  height: 3px;
+  border-radius: 99px;
+  display: block;
+  background: var(--blue-400);
+}
+
+/* ─── Bar chart ──────────────────────────────────────────── */
+.rep-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 180px;
+  padding: 0 4px;
+  margin-bottom: 16px;
+}
+
+.rep-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.rep-bar-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.rep-bar {
+  width: 100%;
+  background: var(--blue-200);
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  position: relative;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.rep-bar:hover { opacity: 0.8; }
+
+.rep-bar--peak {
+  background: var(--blue-700);
+}
+
+.rep-bar-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--blue-900);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.rep-bar:hover .rep-bar-tooltip { opacity: 1; }
+
+.rep-bar-label {
+  font-size: 10px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ─── Bar summary ────────────────────────────────────────── */
+.rep-bar-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  border-top: 0.5px solid var(--blue-100);
+  padding-top: 16px;
+}
+
+.rep-bar-summary__item { text-align: center; }
+
+.rep-bar-summary__val {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--blue-900);
+  letter-spacing: -0.01em;
+}
+
+.rep-bar-summary__lbl {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+
+/* ─── Tabs ───────────────────────────────────────────────── */
+.rep-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 0.5px solid var(--blue-100);
+  margin: -20px -20px 20px;
+  padding: 0 20px;
+}
+
+.rep-tab {
+  padding: 13px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-600);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+}
+
+.rep-tab:hover { color: var(--blue-900); }
+
+.rep-tab--active {
+  color: var(--blue-700);
+  border-bottom-color: var(--blue-700);
+  font-weight: 600;
+}
+
+/* ─── Table overrides ────────────────────────────────────── */
+.admin-table thead th {
+  background: var(--blue-10);
+  color: var(--blue-700);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-bottom: 0.5px solid var(--blue-200);
+}
+
+.admin-table tbody tr:hover td {
+  background: var(--blue-10);
+}
+
+.admin-table tbody td {
+  border-bottom: 0.5px solid var(--blue-50);
+  color: var(--gray-900);
+}
+
+/* ─── Rank ───────────────────────────────────────────────── */
+.rep-rank {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--blue-50);
+  border: 0.5px solid var(--blue-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue-700);
+}
+
+.rep-rank--top {
+  background: var(--blue-700);
+  color: var(--white);
+  border-color: var(--blue-700);
+}
+
+/* ─── Booking bar ────────────────────────────────────────── */
+.rep-booking-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rep-booking-bar__fill {
+  height: 4px;
+  background: var(--blue-200);
+  border-radius: 99px;
+  min-width: 4px;
+  max-width: 100px;
+}
+
+.rep-booking-bar span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-900);
+}
+
+/* ─── Growth badge ───────────────────────────────────────── */
+.rep-growth {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.rep-growth--up {
+  background: var(--green-bg);
+  color: var(--green-text);
+  border: 0.5px solid var(--green-border);
+}
+
+.rep-growth--down {
+  background: var(--red-bg);
+  color: var(--red-text);
+  border: 0.5px solid var(--red-border);
+}
+
+/* ─── Conversion & rating ────────────────────────────────── */
+.rep-conversion {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-700);
+}
+
+.rep-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rep-rating__star { color: #F59E0B; font-size: 13px; }
+.rep-rating__val  { font-size: 13px; font-weight: 600; color: var(--blue-900); }
+
+/* ─── Bottom row ─────────────────────────────────────────── */
+.rep-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ─── Breakdown bars ─────────────────────────────────────── */
+.rep-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rep-breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rep-breakdown-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.rep-breakdown-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rep-breakdown-label {
+  font-size: 12px;
+  color: var(--gray-600);
+  font-weight: 500;
+  flex: 1;
+}
+
+.rep-breakdown-val {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue-900);
+}
+
+.rep-breakdown-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--blue-50);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.rep-breakdown-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+.rep-breakdown-pct {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-400);
+  width: 32px;
+  text-align: right;
+}
+
+/* ─── KPI rows ───────────────────────────────────────────── */
+.rep-kpis {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rep-kpi-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--blue-50);
+}
+
+.rep-kpi-row:last-child { border-bottom: none; }
+
+.rep-kpi-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue-900);
+  margin-bottom: 2px;
+}
+
+.rep-kpi-desc {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+.rep-kpi-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue-700);
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+/* ─── Topbar overrides ───────────────────────────────────── */
+.admin-topbar__title {
+  color: var(--blue-900);
+  font-weight: 700;
+}
+
+.admin-topbar__sync {
+  color: var(--blue-500);
+}
+
+.sync-dot {
+  background: #22C55E;
+}
+
+.admin-btn--ghost {
+  border-color: var(--blue-200);
+  color: var(--blue-700);
+}
+
+.admin-btn--ghost:hover {
+  background: var(--blue-50);
+  border-color: var(--blue-400);
+}
+
+/* ─── Avatar overrides ───────────────────────────────────── */
+.table-avatar {
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.table-client__name {
+  font-weight: 600;
+  color: var(--blue-900);
+}
+
+.table-budget {
+  font-weight: 600;
+  color: var(--blue-900);
+}
+
+.table-dates {
+  color: var(--gray-600);
+}
+/* ─── TABLE LAYOUT FIX ──────────────────────────────────── */
+
+.admin-table-wrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 600px;
+}
+
+/* ─── Column widths — Destinations ─────────────────────── */
+.admin-table thead th:nth-child(1) { width: 48px; }   /* rank # */
+.admin-table thead th:nth-child(2) { width: 160px; }  /* destination */
+.admin-table thead th:nth-child(3) { width: 130px; }  /* region */
+.admin-table thead th:nth-child(4) { width: 130px; }  /* bookings bar */
+.admin-table thead th:nth-child(5) { width: 110px; }  /* revenue */
+.admin-table thead th:nth-child(6) { width: 100px; }  /* avg value */
+.admin-table thead th:nth-child(7) { width: 80px; }   /* growth */
+
+/* ─── Column widths — Agents ────────────────────────────── */
+/* same column count, just reassign labels */
+
+/* ─── Header ────────────────────────────────────────────── */
+.admin-table thead th {
+  background: #F4F9FF;
+  color: #185FA5;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  border-bottom: 1px solid #B5D4F4;
+  white-space: nowrap;
+  text-align: left;
+}
+
+/* ─── Cells ─────────────────────────────────────────────── */
+.admin-table tbody td {
+  padding: 11px 12px;
+  border-bottom: 0.5px solid #E6F1FB;
+  vertical-align: middle;
+  font-size: 13px;
+  color: #0D1C2E;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-table tbody tr:hover td {
+  background: #F4F9FF;
+}
+
+/* ─── Rank badge ────────────────────────────────────────── */
+.rep-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #E6F1FB;
+  border: 1px solid #85B7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #185FA5;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.rep-rank--top {
+  background: #185FA5;
+  color: #ffffff;
+  border-color: #185FA5;
+}
+
+/* ─── Destination name cell ─────────────────────────────── */
+.table-client__name {
+  font-weight: 600;
+  color: #042C53;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* ─── Booking bar ────────────────────────────────────────── */
+.rep-booking-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.rep-booking-bar__fill {
+  flex-shrink: 0;
+  height: 5px;
+  background: #B5D4F4;
+  border-radius: 99px;
+  min-width: 4px;
+  max-width: 80px;
+}
+
+.rep-booking-bar span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #042C53;
+  flex-shrink: 0;
+}
+
+/* ─── Growth badge ───────────────────────────────────────── */
+.rep-growth {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.rep-growth--up {
+  background: #ECFDF5;
+  color: #15803D;
+  border: 0.5px solid #A7F3D0;
+}
+
+.rep-growth--down {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 0.5px solid #FECACA;
+}
+
+/* ─── Revenue / avg value ────────────────────────────────── */
+.table-budget {
+  font-weight: 600;
+  color: #042C53;
+}
+
+.table-dates {
+  color: #4A6785;
+  font-size: 12px;
+}
+
+/* ─── Agent tab — avatar ─────────────────────────────────── */
+.table-client {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.table-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ─── Conversion rate ────────────────────────────────────── */
+.rep-conversion {
+  font-size: 13px;
+  font-weight: 700;
+  color: #185FA5;
+}
+
+/* ─── Star rating ────────────────────────────────────────── */
+.rep-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.rep-rating__star {
+  color: #F59E0B;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.rep-rating__val {
+  font-size: 13px;
+  font-weight: 600;
+  color: #042C53;
+}
+
+/* ─── Tabs ───────────────────────────────────────────────── */
+.rep-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #B5D4F4;
+  margin: -20px -20px 20px;
+  padding: 0 20px;
+  background: #F4F9FF;
+  border-radius: 14px 14px 0 0;
+}
+
+.rep-tab {
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4A6785;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.rep-tab:hover {
+  color: #042C53;
+  background: #E6F1FB;
+}
+
+.rep-tab--active {
+  color: #185FA5;
+  border-bottom-color: #185FA5;
+  font-weight: 600;
+  background: transparent;
+}

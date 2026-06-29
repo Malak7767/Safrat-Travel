@@ -1,0 +1,134 @@
+.trip-card {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(13,17,23,0.13);
+  margin-top: var(--space-3);
+  border: 1px solid var(--color-surface-2);
+  animation: cardIn var(--dur-slow, 400ms) var(--ease-out, ease) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Image section ── */
+.trip-card__image-wrap {
+  position: relative;
+  height: 170px;
+  background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 50%, #1a3a5c 100%);
+  overflow: hidden;
+}
+
+.trip-card__image {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; inset: 0;
+}
+
+.trip-card__image-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%);
+}
+
+/* Price badge — top right like the reference */
+.trip-card__price-badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 6px 12px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+.trip-card__price-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: 2px;
+}
+
+.trip-card__price-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+/* ── Body section ── */
+.trip-card__body {
+  padding: var(--space-4) var(--space-4) var(--space-4);
+  background: #fff;
+}
+
+.trip-card__location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-1);
+}
+
+.trip-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin-bottom: var(--space-4);
+}
+
+/* Stats row — exactly like the reference */
+.trip-card__stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-surface-2);
+}
+
+.trip-card__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-ink-muted);
+}
+
+.trip-card__stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--color-surface-2);
+  flex-shrink: 0;
+}
+
+.trip-card__stat svg {
+  color: var(--color-ink-muted);
+}
+
+.trip-card__stat-label {
+  font-size: 10px;
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.trip-card__stat-val {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}

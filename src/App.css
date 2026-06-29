@@ -1,0 +1,26 @@
+.app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-surface-1);
+}
+.app__center {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.app__right {
+  width: 420px;
+  min-width: 320px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 1100px) {
+  .app__right { width: 280px; min-width: 280px; }
+}
+@media (max-width: 900px) {
+  .app__right { display: none; }
+}
