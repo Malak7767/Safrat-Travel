@@ -112,6 +112,44 @@ const INITIAL_RULES = [
   successRate: '96%',
   color: '#0EA5E9',
 },
+{
+  id: 10,
+  icon: '✈️',
+  title: 'Amadeus real-time sync + SLA monitoring',
+  desc: 'AI continuously checks flight & hotel availability via Amadeus API, tracks ticket time limits, and notifies agents instantly when deadlines are approaching or availability changes.',
+  enabled: true,
+  category: 'Suppliers',
+  trigger: 'Inquiry or ticket update / SLA timer active',
+  runs: 0,
+  successRate: '97%',
+  color: '#2563EB',
+},
+
+{
+  id: 11,
+  icon: '⏱️',
+  title: 'Ticket SLA warning system',
+  desc: 'Automatically sends a warning to the assigned agent when a booking approaches SLA limits (e.g., Kyoto booking).',
+  enabled: true,
+  category: 'Suppliers',
+  trigger: 'Ticket SLA approaching limit',
+  runs: 18,
+  successRate: '95%',
+  color: '#F97316',
+},
+{
+  id: 12,
+  icon: '🔔',
+  title: 'Urgent supplier change alert',
+  desc: 'Sends instant notification to employees when hotel availability or pricing changes unexpectedly.',
+  enabled: true,
+  category: 'Suppliers',
+  trigger: 'Supplier availability changed',
+  runs: 31,
+  successRate: '97%',
+  color: '#EF4444',
+},
+
 ]
 
 const ACTIVITY = [
@@ -124,6 +162,10 @@ const ACTIVITY = [
   { icon: '📧', text: 'Follow-up email sent to Oliver Beaumont · no response 48h', time: '5h ago', color: '#F59E0B', status: 'success' },
   { icon: '🤖', text: 'Batch match scores recalculated · 12 quotes updated', time: '6h ago', color: '#06B6D4', status: 'success' },
   { icon: '🤖', text: 'Line times limitation applied ', time: '6h ago', color: '#06B6D4', status: 'success' },
+  { icon: '✈️', text: 'Amadeus sync updated flight prices for Dubai requests', time: '3 min ago', color: '#2563EB', status: 'success' },
+  { icon: '⏱️', text: 'Ticket SLA warning sent to agent (Kyoto booking)', time: '8 min ago', color: '#F59E0B', status: 'warning' },
+  { icon: '🔔', text: 'Urgent notification sent: hotel availability changed', time: '12 min ago', color: '#EF4444', status: 'warning' },
+
 ]
 
 const CATEGORIES = ['All', 'Inquiries', 'Quotes', 'Suppliers', 'Customers', 'Reports']
