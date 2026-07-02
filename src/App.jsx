@@ -17,7 +17,9 @@ import AIAutomationPage from './pages/AIAutomationPage'
 import MyBookingsPage from './pages/MyBookingsPage'
 import PaymentModal from './components/PaymentModal'
 import NotificationsAdmin from './pages/NotificationsAdmin'
+import AllBookingsPage from './pages/AllBookingsPage'
 import { TRIPS, KYOTO_ITINERARY_DAYS, ITINERARY_DATA, TRIP_CHAT_MESSAGES, ADMIN_BOOKINGS, BOOKING_DETAILS } from './data'
+import { BOOKINGS_BY_CLIENT } from './bookingsData'
 import './styles/global.css'
 import './App.css'
 
@@ -160,7 +162,7 @@ export default function App() {
 
   const handleLogin = (userData) => setUser(userData)
   const handleLogout = () => setUser(null)
-  const handleSelectBooking = (name) => setSelectedBooking(ADMIN_BOOKINGS[name])
+  const handleSelectBooking = (name) => setSelectedBooking(BOOKINGS_BY_CLIENT[name])
 
   return (
     <BrowserRouter>
@@ -198,18 +200,27 @@ export default function App() {
           }
         />
 
-        <Route
-          path="/booking"
-          element={
-            user?.role === 'admin'
-              ? <BookingDetail
-                  booking={selectedBooking}
-                  user={user}
-                  onLogout={handleLogout}
-                />
-              : <Navigate to="/login" replace />
-          }
+    <Route
+  path="/bookings"
+  element={
+    user?.role === 'admin'
+      ? <AllBookingsPage user={user} onLogout={handleLogout} onSelectBooking={handleSelectBooking} />
+      : <Navigate to="/login" replace />
+  }
+/>
+
+<Route
+  path="/booking"
+  element={
+    user?.role === 'admin'
+      ? <BookingDetail
+          booking={selectedBooking}
+          user={user}
+          onLogout={handleLogout}
         />
+      : <Navigate to="/login" replace />
+  }
+/>
 
         <Route
           path="/suppliers"

@@ -1,4 +1,4 @@
-/* ─── Base (mobile-first) ─────────────────────────────────────────────────── */
+
 
 .chat-panel {
   display: flex;
@@ -9,7 +9,7 @@
   font-family: var(--font-body);
 }
 
-/* ── Topbar ── */
+
 .chat-topbar {
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  min-width: 0;           /* allow truncation */
+  min-width: 0;           
 }
 
 .chat-topbar__avatar {
@@ -61,7 +61,7 @@
   text-overflow: ellipsis;
 }
 
-/* center live badge — hidden on very small screens */
+
 .chat-topbar__center {
   flex: 1;
   display: none;
@@ -115,14 +115,14 @@
   border: none;
   cursor: pointer;
   transition: background var(--dur-fast);
-  /* bigger tap target on touch */
+  
   touch-action: manipulation;
 }
 
 .topbar-icon-btn:hover { background: var(--color-surface-2); color: var(--color-ink); }
 
 .chat-topbar__user {
-  display: none;           /* hidden on mobile */
+  display: none;          
   align-items: center;
   gap: var(--space-2);
   font-size: 12px;
@@ -142,10 +142,10 @@
   font-weight: var(--weight-semi);
 }
 
-/* ── Trip hero ── */
+
 .trip-hero {
   position: relative;
-  height: 200px;          /* shorter on mobile */
+  height: 200px;         
   flex-shrink: 0;
   overflow: hidden;
   background: linear-gradient(135deg, #0f2044 0%, #1a3d6e 50%, #0d2a52 100%);
@@ -233,7 +233,7 @@
   white-space: nowrap;
 }
 
-/* ── Messages ── */
+
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -275,7 +275,7 @@
 
 .chat-msg--user { flex-direction: row-reverse; }
 
-/* Avatars */
+
 .msg-avatar {
   width: 28px;
   height: 28px;
@@ -293,7 +293,7 @@
 .msg-avatar--ai   { background: linear-gradient(135deg, var(--color-blue-500), var(--color-blue-700)); }
 .msg-avatar--user { background: linear-gradient(135deg, #475569, #1e293b); }
 
-/* ── USER bubble ── */
+
 .msg-bubble--user {
   max-width: 85%;
   background: #0f1f3d;
@@ -308,7 +308,7 @@
 
 .msg-bubble--user p { margin: 0; color: #e8edf5; }
 
-/* ── AI bubble ── */
+
 .msg-bubble--ai {
   max-width: 90%;
   background: var(--color-surface);
@@ -334,7 +334,7 @@
 
 .msg-bubble--ai strong { color: var(--color-ink); font-weight: var(--weight-semi); }
 
-/* Typing indicator */
+
 .msg-bubble--typing {
   display: flex !important;
   flex-direction: row !important;
@@ -359,7 +359,7 @@
   30%            { transform: translateY(-5px); opacity: 1; }
 }
 
-/* ── Input area ── */
+
 .chat-input-area {
   padding: var(--space-3);
   border-top: 1px solid var(--color-surface-2);
@@ -389,7 +389,7 @@
   border: none;
   background: transparent;
   outline: none;
-  font-size: 16px;           /* prevent iOS zoom */
+  font-size: 16px;           
   color: var(--color-ink);
   resize: none;
   max-height: 100px;
@@ -411,7 +411,7 @@
   flex-shrink: 0;
 }
 
-/* AI badge hidden on small phones, shown sm+ */
+
 .chat-ai-badge {
   display: none;
   align-items: center;
@@ -452,7 +452,7 @@
 }
 
 
-/* ─── sm — 480 px ─────────────────────────────────────────────────────────── */
+
 @media (min-width: 480px) {
   .chat-topbar {
     padding: 0 var(--space-4);
@@ -482,12 +482,12 @@
   }
 
   .chat-input {
-    font-size: var(--text-sm);    /* revert anti-zoom override once larger */
+    font-size: var(--text-sm);    
   }
 }
 
 
-/* ─── md — 768 px ─────────────────────────────────────────────────────────── */
+
 @media (min-width: 768px) {
   .chat-topbar {
     padding: 0 var(--space-5);
@@ -500,12 +500,12 @@
     font-size: 12px;
   }
 
-  /* show center live badge */
+  
   .chat-topbar__center {
     display: flex;
   }
 
-  /* show user identity chip */
+  
   .chat-topbar__user {
     display: flex;
   }
@@ -568,7 +568,7 @@
 }
 
 
-/* ─── lg — 1024 px ────────────────────────────────────────────────────────── */
+
 @media (min-width: 1024px) {
   .trip-hero { height: 300px; }
 
@@ -577,7 +577,7 @@
 }
 
 
-/* ─── xl — 1280 px ────────────────────────────────────────────────────────── */
+
 @media (min-width: 1280px) {
   .chat-messages {
     padding: var(--space-6, 1.5rem) var(--space-8, 2rem);
@@ -592,7 +592,7 @@
 }
 
 
-/* ─── 2xl — 1536 px ───────────────────────────────────────────────────────── */
+
 @media (min-width: 1536px) {
   .trip-hero { height: 340px; }
 
@@ -609,7 +609,7 @@
 }
 
 
-/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   .chat-msg      { animation: none; }
   .live-dot      { animation: none; }
@@ -620,7 +620,7 @@
 }
 
 
-/* ─── Safe area (notch / home bar) ───────────────────────────────────────── */
+
 @supports (padding: max(0px)) {
   .chat-input-area {
     padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));

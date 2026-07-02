@@ -4,7 +4,7 @@ import ss3 from './assets/images/TokyoSkyline.jpg';
 import ss4 from './assets/images/amalfi.jpg';
 import ss5 from './assets/images/kyotojapan.jpg';
 import d6 from './assets/images/d6.jpg'
-
+import  egypt from './assets/images/egypt.avif';
 export const TRIPS = [
   {
     id: 1, title: 'Swiss Alps Luxury Escape', status: 'building',
@@ -41,6 +41,12 @@ export const TRIPS = [
     dates: 'Mar 25 – Mar 30, 2026', days: 5, guests: 2, budget: '$5,600',
     tags: ['Cultural', 'Seasonal'],
   },
+   { id: 6, title: 'Egypt Wonders Tour', status: 'confirmed', 
+    destination: 'Cairo & Luxor, Egypt', 
+    image: egypt, dates: 'Oct 10 – Oct 17, 2025', 
+    days: 7, guests: 2, budget: '$6,800',
+     tags: ['Cultural', 'Historical', 'Adventure']
+     },
 ]
 
 export const SAVED_DESTINATIONS = [
@@ -313,6 +319,34 @@ export const BOOKING_DETAILS = {
       { icon: '🍵', label: 'Cultural experiences', amount: '$840' },
     ],
   },
+  6: {
+    destination: 'Cairo & Luxor, Egypt', 
+    hero: egypt,
+     subtitle: 'Wonders Tour · 7 nights · 2 guests', 
+     dates: 'Oct 10 – Oct 17, 2025',
+      total: '$6,800', 
+      status: 'Confirmed',
+       aiScore: 92,
+    flights: [
+      { icon: '✈️', 
+        route: 'Dubai → Cairo Intl', 
+        code: 'EK0927', 
+        date: 'Fri Oct 10 · 08:00', 
+        class: 'Business Class', 
+        status: 'Confirmed', 
+        price: '$1,400', 
+        statusCls: 'cb-tag--green' },
+      { icon: '✈️', route: 'Luxor → Dubai', code: 'EK0928', date: 'Thu Oct 17 · 18:30', class: 'Business Class', status: 'Confirmed', price: '$1,400', statusCls: 'cb-tag--green' },
+    ],
+    hotel: { name: 'Four Seasons Cairo at Nile Plaza', image: egypt, type: 'Nile View Suite · 5-star', nights: '4 nights Cairo + 3 nights Luxor', rating: 4.9, price: '$2,800', amenities: ['Nile view', 'Rooftop pool', 'Spa', 'Butler service'] },
+    activities: [
+      { icon: '🏛️', name: 'Private Pyramids of Giza Tour', detail: 'Sunrise access · Egyptologist guide · Camel ride', price: '$480', status: 'Booked', statusCls: 'cb-tag--green' },
+      { icon: '⛵', name: 'Nile Felucca Sunset Cruise', detail: 'Private felucca · 2h · Dinner on board · AI recommended', price: '$320', status: 'AI Pick', statusCls: 'cb-tag--purple', isAI: true },
+      { icon: '🏺', name: 'Valley of the Kings Expedition', detail: 'Luxor · Tutankhamun tomb · Private Egyptologist', price: '$560', status: 'Booked', statusCls: 'cb-tag--green' },
+      { icon: '🎭', name: 'Sound & Light Show at Karnak', detail: 'Evening · Narrated ancient history · VIP seating', price: '$180', status: 'Optional', statusCls: 'cb-tag--grey' },
+    ],
+    breakdown: [{ icon: '✈️', label: 'Flights (2 persons, return)', amount: '$2,800' }, { icon: '🏨', label: 'Four Seasons + Winter Palace · 7 nights', amount: '$2,800' }, { icon: '🚗', label: 'Private transfers & Nile cruise', amount: '$640' }, { icon: '🏛️', label: 'Tours & experiences', amount: '$560' }],
+  },
 }
 
 // ─── rest of your existing exports unchanged ──────────────────────────────────
@@ -352,7 +386,28 @@ export const ITINERARY_DATA = {
     { id: 4, day: 'DAY 4 · MAR 28', title: 'Arashiyama Bamboo Grove', status: 'confirmed', activities: [{ id: 'k4', detail: 'Private rickshaw · UNESCO garden · Sunrise visit', tags: ['Guided tour', 'Equipment incl.'] }] },
     { id: 5, day: 'DAY 5', title: 'AI generating activities…', status: 'building', activities: [] },
   ],
+  // ✅ Egypt
+  6: [
+    { id: 1, day: 'DAY 1 · OCT 10', title: 'Arrival & Nile Plaza Check-in', status: 'confirmed', activities: [{ id: 'eg1', detail: 'Dubai → Cairo Intl · Business Class · Private transfer', tags: ['Emirates', 'Private car'] }] },
+    { id: 2, day: 'DAY 2 · OCT 11', title: 'Pyramids of Giza & Sphinx', status: 'confirmed', activities: [{ id: 'eg2', detail: 'Sunrise private access · Egyptologist guide · Camel ride', tags: ['Guided tour', 'Equipment incl.'] }] },
+    { id: 3, day: 'DAY 3 · OCT 12', title: 'Egyptian Museum & Bazaar', status: 'confirmed', activities: [{ id: 'eg3', detail: 'Egyptian Museum VIP · Khan el-Khalili bazaar · Felucca cruise', tags: ['Guided tour', 'Private chef'] }] },
+    { id: 4, day: 'DAY 4 · OCT 13', title: 'Flight to Luxor', status: 'confirmed', activities: [{ id: 'eg4', detail: 'Cairo → Luxor · Domestic flight · Winter Palace check-in', tags: ['Private car'] }] },
+    { id: 5, day: 'DAY 5 · OCT 14', title: 'Valley of the Kings', status: 'confirmed', activities: [{ id: 'eg5', detail: "Tutankhamun's tomb · Hatshepsut temple · Private Egyptologist", tags: ['Guided tour', 'Equipment incl.'] }] },
+    { id: 6, day: 'DAY 6 · OCT 15', title: 'Karnak Temple & Sound Show', status: 'pending', activities: [{ id: 'eg6', detail: 'Karnak Temple complex · Evening Sound & Light show · VIP seating', tags: ['Guided tour', 'Wine pairing'] }] },
+    { id: 7, day: 'DAY 7 · OCT 17', title: 'Departure', status: 'confirmed', activities: [{ id: 'eg7', detail: 'Luxor → Dubai · Business Class · Departure transfer', tags: ['Emirates', 'Private car'] }] },
+  ],
+
 }
+// ✅ Egypt live itinerary days (for ItineraryPanel)
+export const EGYPT_ITINERARY_DAYS = [
+  { id: 1, day: 'DAY 1 · OCT 10', title: 'Arrival & Nile Plaza Check-in', status: 'confirmed', activities: [{ id: 'eg1', icon: '✈️', title: 'Flight to Cairo · Emirates EK0927', detail: 'Dubai → Cairo Intl · Business Class', tags: ['Emirates', 'Private car'], status: 'confirmed' }] },
+  { id: 2, day: 'DAY 2 · OCT 11', title: 'Pyramids of Giza & Sphinx', status: 'confirmed', activities: [{ id: 'eg2', icon: '🏛️', title: 'Pyramids of Giza', detail: 'Sunrise access · Egyptologist guide · Camel ride', tags: ['Guided tour', 'Equipment incl.'], status: 'confirmed' }] },
+  { id: 3, day: 'DAY 3 · OCT 12', title: 'Egyptian Museum & Bazaar', status: 'confirmed', activities: [{ id: 'eg3', icon: '🏺', title: 'Egyptian Museum & Khan el-Khalili', detail: 'VIP museum access · Bazaar tour · Felucca cruise', tags: ['Guided tour', 'Private chef'], status: 'confirmed' }] },
+  { id: 4, day: 'DAY 4 · OCT 13', title: 'Flight to Luxor', status: 'confirmed', activities: [{ id: 'eg4', icon: '✈️', title: 'Cairo → Luxor · Winter Palace', detail: 'Domestic flight · Private transfer · Hotel check-in', tags: ['Private car'], status: 'confirmed' }] },
+  { id: 5, day: 'DAY 5 · OCT 14', title: 'Valley of the Kings', status: 'confirmed', activities: [{ id: 'eg5', icon: '🏺', title: 'Valley of the Kings', detail: "Tutankhamun's tomb · Hatshepsut temple · Private Egyptologist", tags: ['Guided tour', 'Equipment incl.'], status: 'confirmed' }] },
+  { id: 6, day: 'DAY 6 · OCT 15', title: 'Karnak Temple & Sound Show', status: 'pending', activities: [{ id: 'eg6', icon: '🎭', title: 'Karnak Temple & Evening Show', detail: 'Temple complex · Sound & Light show · VIP seating', tags: ['Guided tour', 'Wine pairing'], status: 'pending' }] },
+  { id: 7, day: 'DAY 7 · OCT 17', title: 'Departure', status: 'confirmed', activities: [{ id: 'eg7', icon: '✈️', title: 'Return Flight · Emirates EK0928', detail: 'Luxor → Dubai · Business Class', tags: ['Emirates', 'Private car'], status: 'confirmed' }] },
+]
 
 export const CHAT_MESSAGES = [
   { id: 1, role: 'user', text: 'I want to plan an 8-day escape to the Swiss Alps for 2 people in July. We love hiking, fine dining, and luxury mountain lodges. No strict budget.' },
@@ -366,6 +421,8 @@ export const AI_RESPONSES = {
   romantic: { text: "For a romantic retreat, **Santorini** and the **Amalfi Coast** are unbeatable right now. 💑\n\nI can build a combined **Italy–Greece itinerary** with private sunset dinners and boutique cliff-side hotels. Shall I draft it?", tripCard: 3 },
   family: { text: "Family trips need the perfect balance! 👨‍👩‍👧\n\n**Bali** ticks every box — beaches, culture, and kids' activities. I'm checking **villa availability** and **private guide schedules** for your travel window.", tripCard: null },
   cultural: { text: "Exceptional taste! 🏛️\n\n**Kyoto** in spring offers the richest cultural immersion. I'm checking **temple access**, **private tea ceremony bookings**, and **boutique ryokan availability** now.", tripCard: 4 },
+
+   egypt: { text: "Exceptional choice! 🏛️ Egypt is one of the world's most awe-inspiring destinations.\n\nI'm securing **sunrise access to the Pyramids of Giza**, booking a **private Egyptologist guide** for the Valley of the Kings in Luxor, and arranging a luxury **Nile felucca sunset cruise**.\n\nI recommend splitting your stay between **Cairo** (4 nights) and **Luxor** (3 nights) to cover the best of ancient Egypt.", tripCard: 5 },
 }
 
 export const KYOTO_ITINERARY_DAYS = [
@@ -396,6 +453,10 @@ export const TRIP_CHAT_MESSAGES = {
   5: [
     { id: 1, role: 'user', text: 'I want to experience cherry blossom season in Kyoto, Japan. 5 days end of March, 2 people, cultural focus.' },
     { id: 2, role: 'ai', text: "Exceptional timing! 🌸 Late March in Kyoto is peak cherry blossom season.\n\nI'm securing **early morning temple access** at Fushimi Inari and Kinkaku-ji, booking a **traditional tea ceremony** at Urasenke school, and arranging a ryokan with private onsen.", tripCard: 4 },
+  ],
+  6: [
+    { id: 1, role: 'user', text: 'I want a flight to Egypt. What do you recommend?' },
+    { id: 2, role: 'ai', text: "Exceptional choice! 🏛️ Egypt is one of the world's most awe-inspiring destinations.\n\nI'm securing **sunrise access to the Pyramids of Giza**, booking a **private Egyptologist guide** for the Valley of the Kings in Luxor, and arranging a luxury **Nile felucca sunset cruise**.\n\nI recommend splitting your stay between **Cairo** (4 nights) and **Luxor** (3 nights) to cover the best of ancient Egypt.", tripCard: 5 },
   ],
 }
 

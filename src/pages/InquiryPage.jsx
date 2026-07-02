@@ -7,8 +7,8 @@ import '../pages/AdminDashboard.css'
 const INQUIRIES = [
   {
     id: 1,
-    name: 'James Thornton',
-    avatar: 'JT',
+    name: 'Jinan Hasan',
+    avatar: 'JH',
     avatarColor: '#3B82F6',
     trip: 'Honeymoon Package',
     destination: 'Malé, Maldives',
@@ -20,7 +20,7 @@ const INQUIRIES = [
     guests: 2,
     created: 'Jun 12, 2025',
     phone: '+44 7700 900123',
-    email: 'james.thornton@email.com',
+    email: 'jina.hasan@email.com',
     aiScore: 94,
     notes: 'Client prefers overwater bungalows. Anniversary trip — wants something special. Flexible on dates by ±3 days.',
     timeline: [
@@ -31,8 +31,8 @@ const INQUIRIES = [
   },
   {
     id: 2,
-    name: 'Marcus Webb',
-    avatar: 'MW',
+    name: ' Jad Wehbi',
+    avatar: 'JW',
     avatarColor: '#8B5CF6',
     trip: 'Tokyo Business',
     destination: 'Tokyo, Japan',
@@ -44,7 +44,7 @@ const INQUIRIES = [
     guests: 1,
     created: 'Jun 10, 2025',
     phone: '+44 7700 900456',
-    email: 'marcus.webb@corp.com',
+    email: 'jad.wehbi@email.com',
     aiScore: 88,
     notes: 'Business trip. Needs hotel near Shinjuku. Prefers direct flights only. Corporate billing.',
     timeline: [
@@ -56,8 +56,8 @@ const INQUIRIES = [
   },
   {
     id: 3,
-    name: 'Oliver Beaumont',
-    avatar: 'OB',
+    name: 'Joyce Allam',
+    avatar: 'JA',
     avatarColor: '#F59E0B',
     trip: 'Amalfi Family',
     destination: 'Amalfi, Italy',
@@ -69,7 +69,7 @@ const INQUIRIES = [
     guests: 4,
     created: 'Jun 8, 2025',
     phone: '+44 7700 900789',
-    email: 'o.beaumont@gmail.com',
+    email: 'joyce.allam@gmail.com',
     aiScore: 76,
     notes: 'Family of 4 including 2 kids (ages 8 and 11). Needs child-friendly activities. Villa preferred over hotel.',
     timeline: [
@@ -81,8 +81,8 @@ const INQUIRIES = [
   },
   {
     id: 4,
-    name: 'Ravi Nakamura',
-    avatar: 'RN',
+    name: 'Rafic Younes',
+    avatar: 'RY',
     avatarColor: '#EC4899',
     trip: 'Kyoto Cherry Blossom',
     destination: 'Kyoto, Japan',
@@ -94,7 +94,7 @@ const INQUIRIES = [
     guests: 2,
     created: 'Jun 14, 2025',
     phone: '+44 7700 900321',
-    email: 'ravi.nakamura@email.com',
+    email: 'rafic.younes@email.com',
     aiScore: 91,
     notes: 'Cultural focus — temples, tea ceremonies, traditional ryokan. No modern hotels. Cherry blossom season is key.',
     timeline: [
@@ -130,8 +130,8 @@ const INQUIRIES = [
   },
   {
     id: 6,
-    name: 'Sofia Laurent',
-    avatar: 'SL',
+    name: 'Safa Nakhle',
+    avatar: 'SN',
     avatarColor: '#06B6D4',
     trip: 'Paris Luxury Weekend',
     destination: 'Paris, France',

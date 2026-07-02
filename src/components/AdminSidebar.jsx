@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-
+import logo from '../assets/images/safrat_blue_transparent.png';
 const NAV = [
   { label: 'Dashboard', icon: '▦', active: true, section: 'workspace' },
   { label: 'Bookings', icon: '📋', badge: '24', section: 'workspace' },
@@ -17,7 +17,7 @@ export default function AdminSidebar({ activeNav, setActiveNav, user, onLogout }
   const handleNav = (n) => {
     setActiveNav(n.label)
     if (n.label === 'Dashboard') navigate('/admin')
-    if (n.label === 'Bookings') navigate('/booking')
+    if (n.label === 'Bookings') navigate('/bookings')
     if (n.label === 'Inquiries') navigate('/inquiries') 
     if (n.label === 'Suppliers') navigate('/suppliers')
     if (n.label === 'Customers') navigate('/customers')
@@ -29,14 +29,12 @@ export default function AdminSidebar({ activeNav, setActiveNav, user, onLogout }
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar__brand">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-          <path d="M7 14c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-          <circle cx="14" cy="14" r="2.5" fill="white"/>
-        </svg>
+       <a className="nav-logo" href="#">
+                <img src={logo} alt="Safrat Travel Logo" className="nav-logo-img" />
+               </a>
         <div>
-          <p className="admin-sidebar__name">Safrat Travel</p>
-          <p className="admin-sidebar__role">Agency Operations</p>
+          
+          
         </div>
       </div>
 

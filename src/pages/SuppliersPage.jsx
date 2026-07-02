@@ -10,6 +10,7 @@ import su5 from '../assets/images/su5.jpg'
 import su6 from '../assets/images/su6.jpg'
 import su7 from '../assets/images/s7.jpg'
 import su8 from '../assets/images/su8.jpg'
+import SupplierCard from "../components/SupplierCard";
 const SUPPLIERS = [
   {
     id: 1, name: 'Soneva Jani', category: 'Hotel', country: 'Maldives', flag: '🇲🇻',
@@ -135,7 +136,7 @@ export default function SuppliersPage({ user, onLogout }) {
     const matchTier = tier === 'All tiers' || s.tier === tier
     return matchSearch && matchCat && matchTier
   })
-
+ 
   const content = selected ? (
     <SupplierDetail supplier={selected} onBack={() => setSelected(null)} />
   ) : (
@@ -287,19 +288,19 @@ export default function SuppliersPage({ user, onLogout }) {
   )
 
   return (
-    <div className="admin">
-      <AdminSidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        user={user}
-        onLogout={onLogout}
-      />
+  <div className="admin">
+    <AdminSidebar
+      activeNav={activeNav}
+      setActiveNav={setActiveNav}
+      user={user}
+      onLogout={onLogout}
+    />
 
-      <div className="admin-main">
-        {content}
-      </div>
+    <div className="admin-main">
+      {content}
     </div>
-  )
+  </div>
+);
 }
 
 function SupplierDetail({ supplier: s, onBack }) {
@@ -321,40 +322,69 @@ function SupplierDetail({ supplier: s, onBack }) {
       </div>
 
       <div className="sp-detail__hero" style={{ borderTop: `4px solid ${s.color}` }}>
-        <div className="sp-detail__logo" style={{ background: s.color + '18', color: s.color }}>{s.logo}</div>
-        <div className="sp-detail__info">
-          <div className="sp-detail__info-top">
-            <h2 className="sp-detail__name">{s.name}</h2>
-            <span className={`sp-status ${STATUS_MAP[s.status].cls}`}>{STATUS_MAP[s.status].label}</span>
-            <span className={`sp-tier ${TIER_MAP[s.tier]}`}>{s.tier}</span>
-          </div>
-          <p className="sp-detail__meta">{s.flag} {s.country} · {CAT_ICONS[s.category]} {s.category}</p>
-          <div className="sp-detail__tags">
-            {s.tags.map(t => <span key={t} className="sp-tag">{t}</span>)}
-          </div>
-        </div>
-        <div className="sp-detail__kpis">
-          {[
-            { label: 'Total revenue', value: s.revenue },
-            { label: 'Bookings', value: s.bookings },
-            { label: 'Commission', value: s.commission },
-            { label: 'Response time', value: s.responseTime },
-          ].map(k => (
-            <div key={k.label} className="sp-detail__kpi">
-              <span className="sp-detail__kpi-val">{k.value}</span>
-              <span className="sp-detail__kpi-lbl">{k.label}</span>
-            </div>
-          ))}
-        </div>
+
+  <div className="sp-detail__hero-left">
+    <div className="sp-detail__logo" style={{ background: s.color + '18', color: s.color }}>
+      {s.logo}
+    </div>
+
+    <div>
+      <div className="sp-detail__name-row">
+        <h2>{s.name}</h2>
+        <span className={`sp-status ${STATUS_MAP[s.status].cls}`}>
+          {STATUS_MAP[s.status].label}
+        </span>
+        <span className={`sp-tier ${TIER_MAP[s.tier]}`}>
+          {s.tier}
+        </span>
       </div>
 
-      <div className="sp-detail__tabs">
-        {['overview', 'bookings', 'contract', 'contacts'].map(t => (
-          <button key={t} className={`sp-dtab ${tab === t ? 'sp-dtab--active' : ''}`} onClick={() => setTab(t)}>
-            {t.charAt(0).toUpperCase() + t.slice(1)}
-          </button>
-        ))}
+      <p className="sp-detail__meta">
+        {s.flag} {s.country} · {CAT_ICONS[s.category]} {s.category}
+      </p>
+
+      <div className="sp-detail__tags">
+        {s.tags.map(t => <span key={t} className="sp-tag">{t}</span>)}
       </div>
+    </div>
+  </div>
+
+  {/* RIGHT KPI BLOCK */}
+  <div className="sp-detail__hero-right">
+    <div className="sp-hero-kpi">
+      <span>💰 {s.revenue}</span>
+      <small>Revenue</small>
+    </div>
+
+    <div className="sp-hero-kpi">
+      <span>📦 {s.bookings}</span>
+      <small>Bookings</small>
+    </div>
+
+    <div className="sp-hero-kpi">
+      <span>⭐ {s.rating}</span>
+      <small>Rating</small>
+    </div>
+
+    <div className="sp-hero-kpi">
+      <span>⚡ {s.responseTime}</span>
+      <small>Response</small>
+    </div>
+  </div>
+
+</div>
+
+      <div className="sp-detail__tabs">
+  {['overview', 'bookings', 'contract', 'contacts'].map(t => (
+    <button
+      key={t}
+      className={`sp-dtab ${tab === t ? 'active' : ''}`}
+      onClick={() => setTab(t)}
+    >
+      {t.toUpperCase()}
+    </button>
+  ))}
+</div>
 
       <div className="sp-detail__body">
         {tab === 'overview' && (

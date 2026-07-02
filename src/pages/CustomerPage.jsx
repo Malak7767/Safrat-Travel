@@ -7,10 +7,10 @@ import '../pages/AdminDashboard.css'
 const CUSTOMERS = [
   {
     id: 1,
-    name: 'James Thornton',
-    avatar: 'JT',
+    name: 'Jinan Hasan',
+    avatar: 'JH',
     avatarColor: '#3B82F6',
-    email: 'james.thornton@email.com',
+    email: 'jinan.hasan@email.com',
     phone: '+44 7700 900123',
     location: 'London, UK',
     tier: 'VIP',
@@ -31,10 +31,10 @@ const CUSTOMERS = [
   },
   {
     id: 2,
-    name: 'Marcus Webb',
-    avatar: 'MW',
+    name: 'Jad Wehbi',
+    avatar: 'JW',
     avatarColor: '#8B5CF6',
-    email: 'marcus.webb@corp.com',
+    email: 'jad.wehbi@gmail.com',
     phone: '+44 7700 900456',
     location: 'Manchester, UK',
     tier: 'Regular',
@@ -54,10 +54,10 @@ const CUSTOMERS = [
   },
   {
     id: 3,
-    name: 'Oliver Beaumont',
-    avatar: 'OB',
+    name: 'Joyce Allam',
+    avatar: 'JA',
     avatarColor: '#F59E0B',
-    email: 'o.beaumont@gmail.com',
+    email: 'joyce.allam@gmail.com',
     phone: '+44 7700 900789',
     location: 'Bristol, UK',
     tier: 'Regular',
@@ -77,10 +77,10 @@ const CUSTOMERS = [
   },
   {
     id: 4,
-    name: 'Ravi Nakamura',
-    avatar: 'RN',
+    name: 'Rafic Younes',
+    avatar: 'RY',
     avatarColor: '#EC4899',
-    email: 'ravi.nakamura@email.com',
+    email: 'rafic.younes@gmail.com',
     phone: '+44 7700 900321',
     location: 'Edinburgh, UK',
     tier: 'New',
@@ -124,10 +124,10 @@ const CUSTOMERS = [
   },
   {
     id: 6,
-    name: 'Sofia Laurent',
-    avatar: 'SL',
+    name: 'Safa Nakhle',
+    avatar: 'SN',
     avatarColor: '#06B6D4',
-    email: 'sofia.laurent@email.com',
+    email: 'sofia.nakhle@email.com',
     phone: '+33 6 12 34 56 78',
     location: 'Paris, France',
     tier: 'New',
@@ -358,7 +358,7 @@ export default function CustomerPage({ user, onLogout }) {
                     </svg>
                     New Inquiry
                   </button>
-                  <button className="admin-btn admin-btn--primary" onClick={() => navigate('/booking')}>
+                  <button className="admin-btn admin-btn--primary" onClick={() => navigate('/bookings')}>
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                       <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>

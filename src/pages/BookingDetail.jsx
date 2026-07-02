@@ -4,7 +4,7 @@ import AdminSidebar from '../components/AdminSidebar'
 import './BookingDetail.css'
 import '../pages/AdminDashboard.css'
 
-import d6 from '../assets/images/d6.jpg'
+import d6 from '../assets/images/ss2.gif'
 import d2 from '../assets/images/d2.avif'
 import d3 from '../assets/images/d3.jpg'
 import d4 from '../assets/images/d4.jpg'
@@ -12,7 +12,7 @@ import d5 from '../assets/images/d5.png'
 
 const BOOKING = {
   id: 'SAF-2049',
-  client: { name: 'James Thornton', avatar: 'JT', trip: 'Honeymoon Package' },
+  client: { name: 'Jinan Hasan', avatar: 'JH', trip: 'Honeymoon Package' },
   destination: 'Malé, Maldives',
   hero: d6,
   badge: 'HONEYMOON PACKAGE',
@@ -149,11 +149,11 @@ export default function BookingDetail({ user, onLogout,booking }) {
 
           {/* ── Topbar ── */}
           <div className="bk-topbar">
-            <button className="bk-back" onClick={() => navigate('/admin')}>
+            <button className="bk-back" onClick={() => navigate('/bookings')}>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              Back to Dashboard
+              Back to Booking
             </button>
 
             <div className="bk-topbar__client">

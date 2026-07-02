@@ -2,7 +2,7 @@ import { useState } from 'react'
 import AdminSidebar from '../components/AdminSidebar'
 import './AIAutomationPage.css'
 import '../pages/AdminDashboard.css'
-
+import NewAutomationModal from '../components/NewAutomation'
 const INITIAL_RULES = [
   {
     id: 1,
@@ -100,6 +100,18 @@ const INITIAL_RULES = [
     successRate: '99%',
     color: '#06B6D4',
   },
+  {
+  id: 9,
+  icon: '⏱️',
+  title: 'Line response time limitation',
+  desc: 'Automatically escalates a quote to a senior agent if AI response time exceeds the set threshold.',
+  enabled: true,
+  category: 'Quotes',
+  trigger: 'Response time > 5 min',
+  runs: 27,
+  successRate: '96%',
+  color: '#0EA5E9',
+},
 ]
 
 const ACTIVITY = [
@@ -111,6 +123,7 @@ const ACTIVITY = [
   { icon: '📄', text: 'Generated Maldives package quote for James Thornton', time: '3h ago', color: '#8B5CF6', status: 'success' },
   { icon: '📧', text: 'Follow-up email sent to Oliver Beaumont · no response 48h', time: '5h ago', color: '#F59E0B', status: 'success' },
   { icon: '🤖', text: 'Batch match scores recalculated · 12 quotes updated', time: '6h ago', color: '#06B6D4', status: 'success' },
+  { icon: '🤖', text: 'Line times limitation applied ', time: '6h ago', color: '#06B6D4', status: 'success' },
 ]
 
 const CATEGORIES = ['All', 'Inquiries', 'Quotes', 'Suppliers', 'Customers', 'Reports']
@@ -127,7 +140,7 @@ export default function AIAutomationPage({ user, onLogout }) {
   const [rules, setRules] = useState(INITIAL_RULES)
   const [categoryFilter, setCategoryFilter] = useState('All')
   const [confirmId, setConfirmId] = useState(null)
-
+  const [showNewModal, setShowNewModal] = useState(false)
   const toggleRule = (id) => {
     setRules(prev => prev.map(r =>
       r.id === id ? { ...r, enabled: !r.enabled } : r
@@ -136,6 +149,10 @@ export default function AIAutomationPage({ user, onLogout }) {
     setTimeout(() => setConfirmId(null), 1500)
   }
 
+   const handleCreateRule = (newRule) => {
+  setRules(prev => [newRule, ...prev])
+  setShowNewModal(false)
+}
   const filtered = rules.filter(r =>
     categoryFilter === 'All' || r.category === categoryFilter
   )
@@ -167,15 +184,20 @@ export default function AIAutomationPage({ user, onLogout }) {
               <span className="ai-status-dot"/>
               AI Engine Online
             </div>
-            <button className="admin-btn admin-btn--primary">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-              </svg>
-              New Automation
-            </button>
+            <button className="admin-btn admin-btn--primary" onClick={() => setShowNewModal(true)}>
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+  </svg>
+  New Automation
+</button>
           </div>
         </div>
-
+{showNewModal && (
+  <NewAutomationModal
+    onClose={() => setShowNewModal(false)}
+    onCreate={handleCreateRule}
+  />
+)}
         <div className="admin-content">
 
           {/* AI Stats */}

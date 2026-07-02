@@ -2,13 +2,21 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AdminDashboard.css'
 import AdminSidebar from '../components/AdminSidebar'
+import { useCountUp } from '../hooks/useCountUp'   // ← adjust path if needed
 
 const INQUIRIES = [
-  { id: 1, name: 'James Thornton', trip: 'Honeymoon Package', destination: 'Malé, Maldives', dates: 'Aug 20 – Aug 26', budget: '$9,850', status: 'Quoting', agent: 'Layla K.', avatar: 'JT', agentAvatar: 'LK', avatarColor: '#4c7ec9' },
-  { id: 2, name: 'Marcus Webb', trip: 'Tokyo Business', destination: 'Tokyo, Japan', dates: 'Sep 10 – Sep 14', budget: '$5,400', status: 'Confirmed', agent: 'Priya S.', avatar: 'MW', agentAvatar: 'PS', avatarColor: '#cfd305' },
-  { id: 3, name: 'Oliver Beaumont', trip: 'Amalfi Family', destination: 'Amalfi, Italy', dates: 'Jul 18 – Jul 28', budget: '$12,400', status: 'Pending', agent: 'Layla K.', avatar: 'OB', agentAvatar: 'LK', avatarColor: '#4c7ec9' },
-  { id: 4, name: 'Ravi Nakamura', trip: 'Kyoto Cherry Blossom', destination: 'Kyoto, Japan', dates: 'Apr 1 – Apr 6', budget: '$7,200', status: 'Quoting', agent: 'Dana R.', avatar: 'RN', agentAvatar: 'DR', avatarColor: '#cfd305' },
+  { id: 1, name: 'Jina Hasan',   trip: 'Honeymoon Package',     destination: 'Malé, Maldives', dates: 'Aug 20 – Aug 26', budget: '$9,850',  status: 'Quoting',   agent: 'Layla K.', avatar: 'JH', agentAvatar: 'LK', avatarColor: '#4c7ec9' },
+  { id: 2, name: 'Jad Wehbi',    trip: 'Tokyo Business',        destination: 'Tokyo, Japan',   dates: 'Sep 10 – Sep 14', budget: '$5,400',  status: 'Confirmed', agent: 'Priya S.', avatar: 'JW', agentAvatar: 'PS', avatarColor: '#cfd305' },
+  { id: 3, name: 'Joyce Allam',  trip: 'Amalfi Family',         destination: 'Amalfi, Italy',  dates: 'Jul 18 – Jul 28', budget: '$12,400', status: 'Pending',   agent: 'Layla K.', avatar: 'JA', agentAvatar: 'LK', avatarColor: '#4c7ec9' },
+  { id: 4, name: 'Rafic Younes', trip: 'Kyoto Cherry Blossom',  destination: 'Kyoto, Japan',   dates: 'Apr 1 – Apr 6',   budget: '$7,200',  status: 'Quoting',   agent: 'Dana R.',  avatar: 'RY', agentAvatar: 'DR', avatarColor: '#cfd305' },
 ]
+
+// ─── KPI values (edit here to change targets) ───────────────────
+const KPI = {
+  boeing:  { target: 548,  prefix: '$', delay: 100 },
+  airbus:  { target: 620,  prefix: '$', delay: 250 },
+  flights: { target: 850,  prefix: '',  delay: 400 },
+}
 
 
 function PlaneGold() {
@@ -103,7 +111,6 @@ function GlobeRoutes() {
   )
 }
 
-
 function BarChart() {
   const months = ['Jan','Feb','Mar','Apr','May','Jun']
   const a = [4,5,4,6,5,7]
@@ -134,7 +141,6 @@ function BarChart() {
   )
 }
 
-
 function DonutChart() {
   const slices = [
     { pct: 0.40, color: '#1E4D8C', label: 'Economy' },
@@ -159,31 +165,11 @@ function DonutChart() {
       })}
       <text x={cx} y={cy - 5} textAnchor="middle" fontSize="9" fill="#1E4D8C" fontWeight="700" fontFamily="Inter,sans-serif">Flight</text>
       <text x={cx} y={cy + 10} textAnchor="middle" fontSize="9" fill="#1E4D8C" fontWeight="700" fontFamily="Inter,sans-serif">Share</text>
-
-      {/* Legend */}
       {slices.map((s, i) => (
         <g key={i}>
           <circle cx="130" cy={30 + i * 32} r="5" fill={s.color}/>
-          <text
-            x="142"
-            y={34 + i * 32}
-            fontSize="9"
-            fill="#5A5A4A"
-            fontFamily="Inter,sans-serif"
-          >
-            {s.label}
-          </text>
-          <text
-            x="215"
-            y={34 + i * 32}
-            fontSize="9"
-            fill="#1E4D8C"
-            fontWeight="600"
-            textAnchor="end"
-            fontFamily="Inter,sans-serif"
-          >
-            {Math.round(s.pct * 100)}%
-          </text>
+          <text x="142" y={34 + i * 32} fontSize="9" fill="#5A5A4A" fontFamily="Inter,sans-serif">{s.label}</text>
+          <text x="215" y={34 + i * 32} fontSize="9" fill="#1E4D8C" fontWeight="600" textAnchor="end" fontFamily="Inter,sans-serif">{Math.round(s.pct * 100)}%</text>
         </g>
       ))}
     </svg>
@@ -255,9 +241,15 @@ function WaveChart() {
   )
 }
 
+
 export default function AdminDashboard({ user, onLogout, onSelectBooking }) {
   const [activeNav, setActiveNav] = useState('Dashboard')
   const navigate = useNavigate()
+
+  // ── Counter values (count up on mount) ──────────────────────
+  const boeing  = useCountUp(KPI.boeing.target,  1400, KPI.boeing.delay)
+  const airbus  = useCountUp(KPI.airbus.target,  1400, KPI.airbus.delay)
+  const flights = useCountUp(KPI.flights.target, 1400, KPI.flights.delay)
 
   return (
     <div className="admin">
@@ -298,44 +290,40 @@ export default function AdminDashboard({ user, onLogout, onSelectBooking }) {
 
           {/* ── KPI flight cards ── */}
           <div className="kpi-grid">
+
             {/* Card 1 — Gold */}
             <div className="kpi-card kpi-card--gold">
               <div className="kpi-card__text">
                 <p className="kpi-card__eyebrow">Boeing 787</p>
-                <p className="kpi-card__value">$548</p>
+                <div className="kpi-card__value">${boeing.toLocaleString()}</div>
                 <p className="kpi-card__sub">47 Active Inquiries · 12 AI-managed</p>
                 <div className="kpi-card__bar"><div className="kpi-card__bar-fill" style={{width:'68%'}}/></div>
               </div>
-              <div className="kpi-card__visual">
-                <PlaneGold />
-              </div>
+              <div className="kpi-card__visual"><PlaneGold /></div>
             </div>
 
             {/* Card 2 — Teal */}
             <div className="kpi-card kpi-card--teal">
               <div className="kpi-card__text">
                 <p className="kpi-card__eyebrow">Airbus 811</p>
-                <p className="kpi-card__value">$620</p>
+                <div className="kpi-card__value">${airbus.toLocaleString()}</div>
                 <p className="kpi-card__sub">284 Total Bookings · YTD</p>
                 <div className="kpi-card__bar"><div className="kpi-card__bar-fill" style={{width:'84%'}}/></div>
               </div>
-              <div className="kpi-card__visual">
-                <PlaneTeal />
-              </div>
+              <div className="kpi-card__visual"><PlaneTeal /></div>
             </div>
 
             {/* Card 3 — Dark + Globe */}
             <div className="kpi-card kpi-card--dark">
               <div className="kpi-card__text">
                 <p className="kpi-card__eyebrow">Total Flights</p>
-                <p className="kpi-card__value">850</p>
+                <div className="kpi-card__value">{flights.toLocaleString()}</div>
                 <p className="kpi-card__sub">All confirmed routes · Revenue $2.4M</p>
                 <div className="kpi-card__bar"><div className="kpi-card__bar-fill" style={{width:'100%'}}/></div>
               </div>
-              <div className="kpi-card__visual kpi-card__visual--globe">
-                <GlobeRoutes />
-              </div>
+              <div className="kpi-card__visual kpi-card__visual--globe"><GlobeRoutes /></div>
             </div>
+
           </div>
 
           {/* ── Mid row: Last Trips + Stats ── */}
@@ -355,12 +343,8 @@ export default function AdminDashboard({ user, onLogout, onSelectBooking }) {
                   </tr>
                 </thead>
                 <tbody>
-  {INQUIRIES.map(inq => (
-    <tr
-      key={inq.name}
-      onClick={() => { onSelectBooking(inq.name); navigate('/booking') }}
-      style={{ cursor: 'pointer' }}
-    >
+                  {INQUIRIES.map(inq => (
+                    <tr key={inq.name} onClick={() => { onSelectBooking(inq.name); navigate('/booking') }} style={{ cursor: 'pointer' }}>
                       <td>
                         <div className="trip-member">
                           <div className="trip-avatar" style={{background: inq.avatarColor}}>{inq.avatar}</div>
@@ -418,12 +402,12 @@ export default function AdminDashboard({ user, onLogout, onSelectBooking }) {
               </div>
               <div className="activity-list">
                 {[
-                  { icon: '🤖', text: 'AI quoted James · Maldives', time: '2m', color: '#C9A84C' },
-                  { icon: '✅', text: 'Marcus Webb confirmed Tokyo', time: '14m', color: '#2D4A3E' },
-                  { icon: '✈️', text: 'BA confirmed seats · SAF-2049', time: '28m', color: '#8BA888' },
-                  { icon: '💬', text: 'New inquiry · Santorini · 2 guests', time: '45m', color: '#C9A84C' },
-                  { icon: '📄', text: 'PDF sent · Oliver Beaumont', time: '1h', color: '#2D4A3E' },
-                  { icon: '⚠️', text: 'Supplier overdue · Hotel Bali', time: '2h', color: '#c0392b' },
+                  { icon: '🤖', text: 'AI quoted James · Maldives',      time: '2m',  color: '#C9A84C' },
+                  { icon: '✅', text: 'Marcus Webb confirmed Tokyo',       time: '14m', color: '#2D4A3E' },
+                  { icon: '✈️', text: 'BA confirmed seats · SAF-2049',    time: '28m', color: '#8BA888' },
+                  { icon: '💬', text: 'New inquiry · Santorini · 2 guests',time: '45m', color: '#C9A84C' },
+                  { icon: '📄', text: 'PDF sent · Oliver Beaumont',        time: '1h',  color: '#2D4A3E' },
+                  { icon: '⚠️', text: 'Supplier overdue · Hotel Bali',    time: '2h',  color: '#c0392b' },
                 ].map((item, i) => (
                   <div key={i} className="activity-item">
                     <div className="activity-item__icon" style={{background: item.color+'20', color: item.color}}>{item.icon}</div>
